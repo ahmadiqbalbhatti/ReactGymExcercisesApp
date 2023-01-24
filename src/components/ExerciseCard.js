@@ -2,12 +2,13 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {Button, Stack, Typography} from "@mui/material";
 
-const ExerciseCard = ({key, exercise}) => {
+const ExerciseCard = ({keys, exercise}) => {
     return (
-        <Link to={`/exercise/${exercise.id}`} className={'exercise-card'} key={key}>
-            <img src={exercise.gifUrl} alt={exercise.name} loading={'lazy'}/>
-            <Stack direction={'row'}>
+        <Link to={`/exercise/${exercise.id}`} className={'exercise-card'} key={keys}>
+            <img src={exercise.gifUrl} alt={exercise.name} loading={'lazy'} key={exercise.id}/>
+            <Stack direction={'row'} key={exercise.name}>
                 <Button
+                    key={exercise.gifUrl}
                     sx={{
                         ml:'21px',
                         px:'1rem',
@@ -19,6 +20,7 @@ const ExerciseCard = ({key, exercise}) => {
                     {exercise.bodyPart}
                 </Button>
                 <Button
+                    key={exercise.id}
                     sx={{
                         ml:'21px',
                         px:'1rem',
@@ -31,7 +33,7 @@ const ExerciseCard = ({key, exercise}) => {
                 </Button>
             </Stack>
 
-            <Typography minHeight={'5rem'} fontSize={'1.5rem'} fontWeight={'bold'} ml={'21px'} color={'rgb(27,30,35)'} textTransform={'capitalize'} mt={'1rem'} pb={'0.8rem'}>
+            <Typography key={exercise.target} minHeight={'5rem'} fontSize={'1.5rem'} fontWeight={'bold'} ml={'21px'} color={'rgb(27,30,35)'} textTransform={'capitalize'} mt={'1rem'} pb={'0.8rem'}>
                 {exercise.name}
             </Typography>
         </Link>

@@ -10,7 +10,7 @@ const Exercises = ({bodyPart, exercises, setExercises}) => {
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFirstExercises = indexOfLastExercise - exercisesPerPage;
 
-    const currentExercises = exercises.slice(indexOfFirstExercises, indexOfLastExercise);
+    const currentExercises = exercises?.slice(indexOfFirstExercises, indexOfLastExercise);
 
     const onPageChange = (event, value) => {
         setCurrentPage(value);
@@ -32,8 +32,6 @@ const Exercises = ({bodyPart, exercises, setExercises}) => {
         fetchExercisesData();
     }, [bodyPart]);
 
-
-    console.log(exercises);
     return (
         <Box id={'exercises'}
              sx={{
@@ -41,7 +39,6 @@ const Exercises = ({bodyPart, exercises, setExercises}) => {
              }}
              mt={'50px'}
              p={'20px'}
-
         >
             <Typography variant={'h3'} mb={'46px'} fontFamily={'Josefin Sans'}>
                 Showing Results
@@ -57,8 +54,7 @@ const Exercises = ({bodyPart, exercises, setExercises}) => {
             >
                 {
                     currentExercises.map((exercise, index) => (
-                        // <p key={exercise.id}>{exercise.name}</
-                        <ExerciseCard key={index} exercise={exercise}/>
+                        <ExerciseCard keys={index} exercise={exercise}/>
                     ))
                 }
 
